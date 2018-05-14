@@ -53,8 +53,14 @@ Usage
        // ...
        'react',
      ],
-     react: {
-       pragma: 'h',
+     rules: {
+       // ...
+       'react/jsx-uses-react': 'error',
+     },
+     settings: {
+       react: {
+         pragma: 'h',
+       },
      },
    };
    ```
