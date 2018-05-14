@@ -1,4 +1,4 @@
-const VM = global.VM || {};
+const VM = window.VM || {};
 VM.createElement = createElement;
 export default VM;
 
