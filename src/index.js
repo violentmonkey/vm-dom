@@ -14,6 +14,8 @@ function createElement(tag, props, ...children) {
         renderChild(el, value);
       } else if (key === 'style' && typeof value === 'object') {
         renderStyle(el, value);
+      } else if (key === 'dangerouslySetInnerHTML' && value) {
+        el.innerHTML = value.__html || ''; // eslint-disable-line no-underscore-dangle
       } else if (typeof value === 'boolean') {
         if (value) el.setAttribute(key, key);
         else el.removeAttribute(key);
