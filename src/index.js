@@ -24,7 +24,7 @@ function createElement(tag, props, ...children) {
       }
     });
   }
-  renderChild(children);
+  renderChild(el, children);
   return el;
 }
 
