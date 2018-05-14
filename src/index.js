@@ -4,6 +4,7 @@ export default VM;
 
 function createElement(tag, props, ...children) {
   const el = document.createElement(tag);
+  let ref;
   if (props) {
     Object.keys(props).forEach(key => {
       const value = props[key];
@@ -16,6 +17,8 @@ function createElement(tag, props, ...children) {
         renderStyle(el, value);
       } else if (key === 'dangerouslySetInnerHTML' && value) {
         el.innerHTML = value.__html || ''; // eslint-disable-line no-underscore-dangle
+      } else if (key === 'ref' && typeof value === 'function') {
+        ref = value;
       } else if (typeof value === 'boolean') {
         if (value) el.setAttribute(key, key);
         else el.removeAttribute(key);
@@ -27,6 +30,7 @@ function createElement(tag, props, ...children) {
     });
   }
   renderChild(el, children);
+  if (ref) ref(el);
   return el;
 }
 
