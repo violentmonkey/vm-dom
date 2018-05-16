@@ -8,7 +8,4 @@
       "decoratorsLegacy": true,
     }],
   ],
-  "plugins": [
-    "@babel/plugin-external-helpers"
-  ],
 }
