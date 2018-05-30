@@ -6,61 +6,17 @@ VM.createElement
 
 Use JSX for HTML elements.
 
+Based on [@gera2ld/jsx-dom](https://github.com/gera2ld/jsx-dom).
+
 Usage
 ---
 
-1. Use in a userscript:
+Use in a userscript:
 
-   ```js
-   // ...
-   // @require https://unpkg.com/vm.jsx
-   // ...
+```js
+// ...
+// @require https://unpkg.com/vm.jsx
+// ...
 
-   document.body.appendChild(VM.createElement('div', {}, 'hello'));
-   ```
-
-1. Use with Babel:
-
-   ```sh
-   $ yarn add vm.jsx
-   # ESLint
-   $ yarn add eslint-plugin-react -D
-   ```
-
-   ```js
-   import VM from 'vm.jsx';
-   const h = VM.createElement;
-
-   document.body.appendChild(<div>hello</div>);
-   ```
-
-   ```js
-   // .babelrc
-   {
-     // ...
-     "plugins": [
-       ["@babel/plugin-transform-react-jsx", {
-         "pragma": "h",
-       }],
-     ],
-   }
-   ```
-
-   ```js
-   // .eslintrc.js
-   module.exports = {
-     plugins: [
-       // ...
-       'react',
-     ],
-     rules: {
-       // ...
-       'react/jsx-uses-react': 'error',
-     },
-     settings: {
-       react: {
-         pragma: 'h',
-       },
-     },
-   };
-   ```
+document.body.appendChild(VM.createElement('div', {}, 'hello'));
+```
