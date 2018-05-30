@@ -1,7 +1,7 @@
 VM.createElement
 ---
 
-![NPM](https://img.shields.io/npm/v/vm.jsx.svg)
+[![NPM](https://img.shields.io/npm/v/vm.jsx.svg)](https://npm.im/vm.jsx)
 ![License](https://img.shields.io/npm/l/vm.jsx.svg)
 
 Use JSX for HTML elements.

@@ -2,7 +2,9 @@
   "presets": [
     ["@babel/preset-env", {
       "modules": false,
-      "exclude": ["transform-typeof-symbol"],
+      "exclude": [
+        "transform-typeof-symbol",
+      ],
     }],
     ["@babel/preset-stage-2", {
       "decoratorsLegacy": true,

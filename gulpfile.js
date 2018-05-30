@@ -5,7 +5,9 @@ const rollup = require('rollup');
 const del = require('del');
 const babel = require('rollup-plugin-babel');
 const replace = require('rollup-plugin-replace');
-const uglify = require('rollup-plugin-uglify');
+const resolve = require('rollup-plugin-node-resolve');
+const commonjs = require('rollup-plugin-commonjs');
+const { uglify } = require('rollup-plugin-uglify');
 const pkg = require('./package.json');
 
 const DIST = 'dist';
@@ -19,13 +21,13 @@ const values = {
 const commonConfig = {
   input: {
     plugins: [
-      // Note: rollup-plugin-babel does not support targeting latest versions
-      // See https://github.com/rollup/rollup-plugin-babel/issues/212
       babel({
         exclude: 'node_modules/**',
         externalHelpers: true,
       }),
       replace({ values }),
+      resolve(),
+      commonjs(),
     ],
   },
 };
