@@ -39,6 +39,6 @@
     "rollup-plugin-uglify": "^4.0.0"
   },
   "dependencies": {
-    "@gera2ld/jsx-dom": "^0.1.0"
+    "@gera2ld/jsx-dom": "^0.1.1"
   }
 }
