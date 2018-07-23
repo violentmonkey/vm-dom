@@ -1,6 +1,6 @@
 {
   "name": "vm.jsx",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Use JSX for HTML elements.",
   "author": "Gerald <gera2ld@163.com>",
   "license": "ISC",
