@@ -4,6 +4,9 @@
   "description": "Use JSX for HTML elements.",
   "author": "Gerald <gera2ld@163.com>",
   "license": "ISC",
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "unpkg": "dist/index.min.js",
   "repository": "git@github.com:violentmonkey/vm-jsx.git",
@@ -11,7 +14,8 @@
     "dev": "gulp dev",
     "prebuild": "yarn lint && gulp clean",
     "build": "cross-env NODE_ENV=production gulp build",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prepublish": "npm run build"
   },
   "husky": {
     "hooks": {
