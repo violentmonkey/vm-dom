@@ -1,61 +1,45 @@
-const path = require('path');
 const gulp = require('gulp');
 const log = require('fancy-log');
 const rollup = require('rollup');
 const del = require('del');
-const babel = require('rollup-plugin-babel');
-const replace = require('rollup-plugin-replace');
-const resolve = require('rollup-plugin-node-resolve');
-const commonjs = require('rollup-plugin-commonjs');
 const { uglify } = require('rollup-plugin-uglify');
+const { getRollupPlugins, getExternal } = require('./scripts/util');
 const pkg = require('./package.json');
 
 const DIST = 'dist';
-const IS_PROD = process.env.NODE_ENV === 'production';
-const values = {
-  'process.env.VERSION': pkg.version,
-  'process.env.NODE_ENV': process.env.NODE_ENV || 'development',
-};
+const FILENAME = 'index';
+const BANNER = `/*! ${pkg.name} v${pkg.version} | ${pkg.license} License */`;
 
-
-const commonConfig = {
-  input: {
-    plugins: [
-      babel({
-        exclude: 'node_modules/**',
-        externalHelpers: true,
-      }),
-      replace({ values }),
-      resolve(),
-      commonjs(),
-    ],
-  },
-};
+const external = getExternal();
 const rollupConfig = [
   {
     input: {
-      ...commonConfig.input,
       input: 'src/index.js',
+      plugins: getRollupPlugins({ browser: true }),
     },
     output: {
-      ...commonConfig.output,
       format: 'umd',
+      file: `${DIST}/${FILENAME}.js`,
       name: 'VM',
-      file: `${DIST}/index.js`,
     },
     minify: true,
   },
 ];
 // Generate minified versions
-Array.from(rollupConfig)
-.filter(({ minify }) => minify)
+rollupConfig.filter(({ minify }) => minify)
 .forEach(config => {
   rollupConfig.push({
     input: {
       ...config.input,
       plugins: [
         ...config.input.plugins,
-        uglify(),
+        uglify({
+          output: {
+            ...BANNER && {
+              preamble: BANNER,
+            },
+          },
+        }),
       ],
     },
     output: {
@@ -66,23 +50,36 @@ Array.from(rollupConfig)
 });
 
 function clean() {
-  return del(DIST);
+  return del([DIST]);
 }
 
 function buildJs() {
-  return Promise.all(rollupConfig.map(config => {
-    return rollup.rollup(config.input)
-    .then(bundle => bundle.write(config.output))
-    .catch(err => {
-      log(err.toString());
+  return Promise.all(rollupConfig.map(async config => {
+    const bundle = await rollup.rollup(config.input);
+    await bundle.write({
+      ...config.output,
+      ...BANNER && {
+        banner: BANNER,
+      },
     });
   }));
 }
 
-function watch() {
-  gulp.watch('src/**', buildJs);
+function wrapError(handle) {
+  const wrapped = () => handle()
+  .catch(err => {
+    log(err.toString());
+  });
+  wrapped.displayName = handle.name;
+  return wrapped;
 }
+
+function watch() {
+  gulp.watch('src/**', safeBuildJs);
+}
+
+const safeBuildJs = wrapError(buildJs);
 
 exports.clean = clean;
 exports.build = buildJs;
-exports.dev = gulp.series(buildJs, watch);
+exports.dev = gulp.series(safeBuildJs, watch);

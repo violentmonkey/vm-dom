@@ -1,25 +1,15 @@
 module.exports = {
-  extends: 'airbnb-base',
-  parser: 'babel-eslint',
-  parserOptions: {
-    sourceType: 'module'
-  },
-  env: {
-    browser: true,
-  },
-  plugins: [
-    'import'
+  root: true,
+  extends: [
+    require.resolve('@gera2ld/plaid/eslint'),
+    require.resolve('@gera2ld/plaid-react/eslint/react'),
   ],
-  rules: {
-    'no-use-before-define': ['error', 'nofunc'],
-    'no-mixed-operators': 0,
-    'arrow-parens': 0,
-    'no-plusplus': 0,
-    'no-param-reassign': 0,
-    'consistent-return': 0,
-    'no-console': ['warn', {
-      allow: ['error', 'warn', 'info'],
-    }],
-    'no-bitwise': ['error', { int32Hint: true }],
+  settings: {
+    'import/resolver': {
+      'babel-module': {},
+    },
+    react: {
+      pragma: 'h',
+    },
   },
 };

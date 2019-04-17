@@ -1,48 +1,53 @@
 {
-  "name": "vm.jsx",
+  "name": "@violentmonkey/dom",
   "version": "0.1.5",
   "description": "Use JSX for HTML elements.",
   "author": "Gerald <gera2ld@163.com>",
   "license": "ISC",
-  "files": [
-    "dist"
-  ],
-  "main": "dist/index.js",
-  "unpkg": "dist/index.min.js",
-  "repository": "git@github.com:violentmonkey/vm-jsx.git",
-  "scripts": {
-    "dev": "gulp dev",
-    "prebuild": "yarn lint && gulp clean",
-    "build": "cross-env NODE_ENV=production gulp build",
-    "lint": "eslint .",
-    "prepublish": "npm run build"
-  },
   "husky": {
     "hooks": {
       "pre-push": "yarn lint"
     }
   },
+  "unpkg": "dist/index.min.js",
+  "jsdelivr": "dist/index.min.js",
+  "repository": "git@github.com:violentmonkey/vm-dom.git",
+  "scripts": {
+    "dev": "gulp dev",
+    "prebuild": "npm run ci && gulp clean",
+    "build": "gulp build",
+    "lint": "eslint .",
+    "prepublishOnly": "npm run build",
+    "ci": "npm run lint"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.49",
-    "@babel/preset-env": "^7.0.0-beta.49",
-    "@babel/preset-stage-2": "^7.0.0-beta.49",
-    "babel-eslint": "^8.2.3",
-    "cross-env": "^5.1.6",
-    "del": "^3.0.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.12.0",
-    "fancy-log": "^1.3.2",
+    "@gera2ld/plaid": "~1.4.0",
+    "@gera2ld/plaid-react": "~1.4.0",
+    "babel-eslint": "^10.0.1",
+    "cross-env": "^5.2.0",
+    "del": "^4.1.0",
+    "eslint": "^5.16.0",
+    "eslint-import-resolver-babel-module": "^5.0.1",
+    "fancy-log": "^1.3.3",
     "gulp": "^4.0.0",
-    "husky": "^1.0.0-rc.8",
-    "rollup": "^0.59.4",
-    "rollup-plugin-babel": "^4.0.0-beta.4",
-    "rollup-plugin-commonjs": "^9.1.3",
-    "rollup-plugin-node-resolve": "^3.3.0",
-    "rollup-plugin-replace": "^2.0.0",
-    "rollup-plugin-uglify": "^4.0.0"
+    "husky": "^1.3.1",
+    "rollup": "^1.10.0",
+    "rollup-plugin-alias": "^1.5.1",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-uglify": "^6.0.2"
   },
   "dependencies": {
-    "@gera2ld/jsx-dom": "^0.1.1"
+    "@babel/runtime": "^7.4.3",
+    "@gera2ld/jsx-dom": "^0.1.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
