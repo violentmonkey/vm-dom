@@ -9,17 +9,21 @@ Based on [@gera2ld/jsx-dom](https://github.com/gera2ld/jsx-dom).
 
 ## Usage
 
-Use in a userscript:
+First, include `@violentmonkey/dom` as a dependency:
 
 ```js
 // ...
 // @require https://cdn.jsdelivr.net/npm/@violentmonkey/dom@1
 // ...
+```
 
+Then you can use `VM.createElement` directly:
+
+```js
 document.body.appendChild(VM.createElement('div', {}, 'hello'));
 ```
 
-This script can be used with JSX and bundlers, for example:
+Or use with JSX and bundlers, for example:
 
 ```js
 // .babelrc.js
@@ -33,10 +37,6 @@ This script can be used with JSX and bundlers, for example:
 ```
 
 ```js
-// ...
-// @require https://cdn.jsdelivr.net/npm/@violentmonkey/dom@1
-// ...
-
 const h = VM.createElement;
 
 document.body.appendChild(<div>hello</div>);
@@ -49,3 +49,9 @@ $ mkdir project
 $ cd project
 $ npx -p https://github.com/gera2ld/generator-rollup.git -p yo yo @gera2ld/rollup:iife
 ```
+
+## API
+
+### VM.createElement
+
+`VM.createElement(tag, props, ...children)`
