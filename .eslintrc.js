@@ -12,4 +12,7 @@ module.exports = {
       pragma: 'h',
     },
   },
+  rules: {
+    'import/prefer-default-export': 'off',
+  },
 };

@@ -21,6 +21,8 @@ const rollupConfig = [
       format: 'umd',
       file: `${DIST}/${FILENAME}.js`,
       name: 'VM',
+      extend: true,
+      esModule: false,
     },
     minify: true,
   },
@@ -57,6 +59,7 @@ function buildJs() {
   return Promise.all(rollupConfig.map(async config => {
     const bundle = await rollup.rollup(config.input);
     await bundle.write({
+      indent: false,
       ...config.output,
       ...BANNER && {
         banner: BANNER,
