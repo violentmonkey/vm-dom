@@ -13,12 +13,17 @@
   "jsdelivr": "dist/index.min.js",
   "repository": "git@github.com:violentmonkey/vm-dom.git",
   "scripts": {
-    "dev": "gulp dev",
-    "prebuild": "npm run ci && gulp clean",
-    "build": "gulp build",
+    "dev": "rollup -wc rollup.conf.js",
+    "prebuild": "npm run ci && npm run clean",
+    "build": "npm run build:js",
     "lint": "eslint .",
     "prepublishOnly": "npm run build",
-    "ci": "npm run lint"
+    "ci": "npm run lint",
+    "clean": "del dist",
+    "build:js": "rollup -c rollup.conf.js"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "main": "dist/index.js",
   "files": [
@@ -26,16 +31,13 @@
   ],
   "devDependencies": {
     "@gera2ld/plaid": "~1.4.0",
-    "@gera2ld/plaid-react": "~1.4.0",
     "babel-eslint": "^10.0.1",
     "cross-env": "^5.2.0",
-    "del": "^4.1.0",
+    "del-cli": "^1.1.0",
     "eslint": "^5.16.0",
-    "eslint-import-resolver-babel-module": "^5.0.1",
-    "fancy-log": "^1.3.3",
-    "gulp": "^4.0.0",
-    "husky": "^1.3.1",
-    "rollup": "^1.10.0",
+    "eslint-import-resolver-babel-module": "^5.1.0",
+    "husky": "^2.2.0",
+    "rollup": "^1.11.3",
     "rollup-plugin-alias": "^1.5.1",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.3.4",
@@ -44,10 +46,7 @@
     "rollup-plugin-uglify": "^6.0.2"
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.3",
-    "@gera2ld/jsx-dom": "^0.1.2"
-  },
-  "publishConfig": {
-    "access": "public"
+    "@babel/runtime": "^7.4.4",
+    "@gera2ld/jsx-dom": "^1.0.0"
   }
 }

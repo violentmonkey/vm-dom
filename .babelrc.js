@@ -8,10 +8,5 @@ module.exports = {
         '#': './src',
       },
     }],
-
-    // react
-    ['@babel/plugin-transform-react-jsx', {
-      pragma: 'h',
-    }],
   ].filter(Boolean),
 };
