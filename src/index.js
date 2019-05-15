@@ -1,3 +1,1 @@
-import h from '@gera2ld/jsx-dom';
-
-export const createElement = h;
+export { createElement, Fragment } from '@gera2ld/jsx-dom';
