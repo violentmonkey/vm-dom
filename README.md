@@ -29,15 +29,13 @@ Or use with JSX and bundlers, for example:
 // .babelrc.js
 {
   plugins: [
-    ['@babel/plugin-transform-react-jsx', {
-      pragma: 'h',
-    }],
+    '@babel/plugin-transform-react-jsx',
   ],
 }
 ```
 
 ```js
-const h = VM.createElement;
+const React = VM;
 
 document.body.appendChild(<div>hello</div>);
 ```
@@ -55,3 +53,5 @@ $ npx -p https://github.com/gera2ld/generator-rollup.git -p yo yo @gera2ld/rollu
 ### VM.createElement
 
 `VM.createElement(tag, props, ...children)`
+
+### VM.Fragment
