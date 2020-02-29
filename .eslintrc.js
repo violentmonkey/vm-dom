@@ -8,7 +8,4 @@ module.exports = {
       'babel-module': {},
     },
   },
-  rules: {
-    'import/prefer-default-export': 'off',
-  },
 };
