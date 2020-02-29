@@ -4,7 +4,7 @@ const { getRollupPlugins, getExternal, DIST } = require('./scripts/util');
 const pkg = require('./package.json');
 
 const FILENAME = 'index';
-const BANNER = false;
+const BANNER = `/*! ${pkg.name} v${pkg.version} | ${pkg.license} License */`;
 
 const external = getExternal();
 const rollupConfig = [
@@ -31,13 +31,7 @@ rollupConfig.filter(({ minify }) => minify)
       ...config.input,
       plugins: [
         ...config.input.plugins,
-        terser({
-          output: {
-            ...BANNER && {
-              preamble: BANNER,
-            },
-          },
-        }),
+        terser(),
       ],
     },
     output: {
