@@ -1,4 +1,4 @@
-# VM.createElement
+# @violentmonkey/dom
 
 [![NPM](https://img.shields.io/npm/v/@violentmonkey/dom.svg)](https://npm.im/@violentmonkey/dom)
 ![License](https://img.shields.io/npm/l/@violentmonkey/dom.svg)
@@ -29,23 +29,25 @@ Or use with JSX and bundlers, for example:
 // .babelrc.js
 {
   plugins: [
-    '@babel/plugin-transform-react-jsx',
+    // JSX
+    ['@babel/plugin-transform-react-jsx', {
+      pragma: 'VM.createElement',
+      pragmaFrag: 'VM.Fragment',
+    }],
   ],
 }
 ```
 
 ```js
-const React = VM;
-
 document.body.appendChild(<div>hello</div>);
 ```
 
-To initialize a project for userscript with JSX support, try [generator-rollup](https://github.com/gera2ld/generator-rollup):
+To initialize a project for userscript with JSX support, try [generator-userscript](https://github.com/violentmonkey/generator-userscript):
 
 ```sh
-$ mkdir project
-$ cd project
-$ npx -p https://github.com/gera2ld/generator-rollup.git -p yo yo @gera2ld/rollup:iife
+$ mkdir my-script
+$ cd my-script
+$ npx -p https://github.com/violentmonkey/generator-userscript.git -p yo yo @violentmonkey/userscript
 ```
 
 ## API
