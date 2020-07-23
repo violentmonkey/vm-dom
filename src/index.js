@@ -14,20 +14,12 @@ export function getElementsByXPath(xpath, context = document) {
   return result;
 }
 
-export function getTextValues(root) {
-  const texts = [];
-  const nodes = [root];
-  while (nodes.length) {
-    const node = nodes.shift();
-    if (node.nodeType === HTMLElement.TEXT_NODE) {
-      texts.push(node.nodeValue);
-    } else if (node.nodeType === HTMLElement.ELEMENT_NODE) {
-      if (!['script', 'style'].includes(node.tagName.toLowerCase())) {
-        nodes.push(...node.childNodes);
-      }
-    }
+export function getTextValues(node) {
+  if (node.nodeType === HTMLElement.TEXT_NODE) return [node.nodeValue];
+  if (node.nodeType === HTMLElement.ELEMENT_NODE && !['script', 'style'].includes(node.tagName.toLowerCase())) {
+    return Array.from(node.childNodes).flatMap(getTextValues);
   }
-  return texts;
+  return [];
 }
 
 export { createElement, Fragment };
