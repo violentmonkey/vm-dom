@@ -60,6 +60,17 @@ $ npx -p https://github.com/violentmonkey/generator-userscript.git -p yo yo @vio
 
 ### VM.getElementsByXPath
 
+`VM.getElementsByXPath(xpath: string, context = document): HTMLElement[]`
+
 ### VM.getTextValues
 
+`VM.getTextValues(node: HTMLElement): string[]`
+
+Walk a node tree and return all text contents in an array.
+
 ### VM.observe
+
+`VM.observe(node: HTMLElement, callback: (mutations, observer) => boolean, options?): () => void`
+
+Observe an existing `node` until `callback` returns `true`.
+The returned function can be called explicitly to revoke the observer.

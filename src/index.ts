@@ -1,29 +1,35 @@
 import { createElement, Fragment } from '@gera2ld/jsx-dom';
 
+export { createElement, Fragment };
+
 const NS_HTML = 'http://www.w3.org/1999/xhtml';
 
-createElement.createElement = tag => document.createElementNS(NS_HTML, tag);
+createElement.createElement = (tag: string) => document.createElementNS(NS_HTML, tag);
 
-export function getElementsByXPath(xpath, context = document) {
+export function getElementsByXPath(xpath: string, context = document) {
   const iterator = document.evaluate(xpath, context, null, XPathResult.ANY_TYPE, null);
-  const result = [];
-  let item;
+  const result: Node[] = [];
+  let item: Node;
   while ((item = iterator.iterateNext())) {
     result.push(item);
   }
   return result;
 }
 
-export function getTextValues(node) {
-  if (node.nodeType === HTMLElement.TEXT_NODE) return [node.nodeValue];
-  if (node.nodeType === HTMLElement.ELEMENT_NODE && !['script', 'style'].includes(node.tagName.toLowerCase())) {
+export function getTextValues(node: HTMLElement) {
+  if (node.nodeType === Node.TEXT_NODE) return [node.nodeValue];
+  if (node.nodeType === Node.ELEMENT_NODE && !['script', 'style'].includes(node.tagName.toLowerCase())) {
     return Array.from(node.childNodes).flatMap(getTextValues);
   }
   return [];
 }
 
-export function observe(node, callback, options) {
-  let revoke;
+export function observe(
+  node: Node,
+  callback: (mutations: MutationRecord[], observer: MutationObserver) => boolean,
+  options?: any,
+) {
+  let revoke: () => void;
   const observer = new MutationObserver((mutations, ob) => {
     const result = callback(mutations, ob);
     if (result) revoke();
@@ -36,5 +42,3 @@ export function observe(node, callback, options) {
   revoke = () => observer.disconnect();
   return revoke;
 }
-
-export { createElement, Fragment };

@@ -1,4 +1,10 @@
-const { getRollupPlugins, getRollupExternal, defaultOptions, rollupMinify } = require('@gera2ld/plaid');
+const {
+  defaultOptions,
+  getRollupExternal,
+  getRollupPlugins,
+  loadConfigSync,
+  rollupMinify,
+} = require('@gera2ld/plaid');
 const pkg = require('./package.json');
 
 const DIST = defaultOptions.distDir;
@@ -6,18 +12,31 @@ const FILENAME = 'index';
 const BANNER = `/*! ${pkg.name} v${pkg.version} | ${pkg.license} License */`;
 
 const external = getRollupExternal();
+const bundleOptions = {
+  extend: true,
+  esModule: false,
+};
+const postcssConfig = loadConfigSync('postcss') || require('@gera2ld/plaid/config/postcssrc');
+const postcssOptions = {
+  ...postcssConfig,
+  inject: false,
+  minimize: true,
+};
 const rollupConfig = [
   {
     input: {
-      input: 'src/index.js',
-      plugins: getRollupPlugins({ esm: true }),
+      input: 'src/index.ts',
+      plugins: getRollupPlugins({
+        esm: true,
+        extensions: defaultOptions.extensions,
+        postcss: postcssOptions,
+      }),
     },
     output: {
       format: 'iife',
       file: `${DIST}/${FILENAME}.js`,
       name: 'VM',
-      extend: true,
-      esModule: false,
+      ...bundleOptions,
     },
     minify: true,
   },
