@@ -22,4 +22,19 @@ export function getTextValues(node) {
   return [];
 }
 
+export function observe(node, callback, options) {
+  let revoke;
+  const observer = new MutationObserver((mutations, ob) => {
+    const result = callback(mutations, ob);
+    if (result) revoke();
+  });
+  observer.observe(node, {
+    childList: true,
+    subtree: true,
+    ...options,
+  });
+  revoke = () => observer.disconnect();
+  return revoke;
+}
+
 export { createElement, Fragment };

@@ -57,3 +57,9 @@ $ npx -p https://github.com/violentmonkey/generator-userscript.git -p yo yo @vio
 `VM.createElement(tag, props, ...children)`
 
 ### VM.Fragment
+
+### VM.getElementsByXPath
+
+### VM.getTextValues
+
+### VM.observe
