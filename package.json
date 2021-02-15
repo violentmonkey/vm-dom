@@ -19,7 +19,7 @@
     "lint": "eslint --ext .ts .",
     "prepublishOnly": "npm run build",
     "ci": "npm run lint",
-    "clean": "del dist types",
+    "clean": "del-cli dist types",
     "build:js": "rollup -c rollup.conf.js"
   },
   "publishConfig": {
@@ -33,14 +33,15 @@
   ],
   "typings": "types/index.d.ts",
   "devDependencies": {
-    "@gera2ld/plaid": "~2.0.0",
-    "@gera2ld/plaid-common-ts": "~2.1.2",
-    "@gera2ld/plaid-rollup": "~2.1.1",
+    "@gera2ld/plaid": "~2.2.1",
+    "@gera2ld/plaid-common-ts": "~2.2.0",
+    "@gera2ld/plaid-rollup": "~2.2.0",
     "del-cli": "^3.0.1",
-    "husky": "^4.3.0"
+    "husky": "^4.3.0",
+    "typedoc": "^0.20.25"
   },
   "dependencies": {
-    "@babel/runtime": "^7.11.2",
+    "@babel/runtime": "^7.12.13",
     "@gera2ld/jsx-dom": "^1.2.1"
   }
 }

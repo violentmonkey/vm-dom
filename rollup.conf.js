@@ -16,9 +16,8 @@ const bundleOptions = {
   extend: true,
   esModule: false,
 };
-const postcssConfig = loadConfigSync('postcss') || require('@gera2ld/plaid/config/postcssrc');
 const postcssOptions = {
-  ...postcssConfig,
+  ...require('@gera2ld/plaid/config/postcssrc'),
   inject: false,
   minimize: true,
 };
