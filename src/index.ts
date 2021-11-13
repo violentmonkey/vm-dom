@@ -2,6 +2,12 @@ export {
   h, createElement, Fragment, mountDom, mountDom as m,
 } from '@gera2ld/jsx-dom';
 
+if (typeof VM === 'object') {
+  VM.versions = Object.assign({}, VM.versions, {
+    dom: 'process.env.VERSION',
+  });
+}
+
 /**
  * Return all elements that match the given `xpath` as an array.
  */
