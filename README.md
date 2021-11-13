@@ -13,14 +13,18 @@ First, include `@violentmonkey/dom` as a dependency:
 
 ```js
 // ...
-// @require https://cdn.jsdelivr.net/npm/@violentmonkey/dom@1
+// @require https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
 // ...
 ```
 
-Then you can use `VM.createElement` directly:
+Then you can use `VM.h` and `VM.m` directly.
+
+Note: `VM.h` is similar to `React.createElement` and `VM.m` is for `mount` as a DOM element.
 
 ```js
-document.body.appendChild(VM.createElement('div', {}, 'hello'));
+const vdom = VM.h('div', {}, 'hello');
+const el = VM.m(vdom);
+document.body.appendChild(el);
 ```
 
 Or use with JSX and bundlers, for example:
@@ -31,7 +35,7 @@ Or use with JSX and bundlers, for example:
   plugins: [
     // JSX
     ['@babel/plugin-transform-react-jsx', {
-      pragma: 'VM.createElement',
+      pragma: 'VM.h',
       pragmaFrag: 'VM.Fragment',
     }],
   ],
@@ -39,7 +43,7 @@ Or use with JSX and bundlers, for example:
 ```
 
 ```js
-document.body.appendChild(<div>hello</div>);
+document.body.appendChild(VM.m(<div>hello</div>));
 ```
 
 To initialize a project for userscript with JSX support, try [generator-userscript](https://github.com/violentmonkey/generator-userscript):
