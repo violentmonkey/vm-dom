@@ -1,10 +1,6 @@
-import { createElement, Fragment } from '@gera2ld/jsx-dom';
-
-export { createElement, Fragment };
-
-const NS_HTML = 'http://www.w3.org/1999/xhtml';
-
-createElement.createElement = (tag: string) => document.createElementNS(NS_HTML, tag);
+export {
+  h, createElement, Fragment, mountDom, mountDom as m,
+} from '@gera2ld/jsx-dom';
 
 /**
  * Return all elements that match the given `xpath` as an array.
@@ -54,11 +50,10 @@ export function observe(
     const result = callback(mutations, ob);
     if (result) disconnect();
   });
-  observer.observe(node, {
+  observer.observe(node, Object.assign({
     childList: true,
     subtree: true,
-    ...options,
-  });
+  }, options));
   disconnect = () => observer.disconnect();
   return disconnect;
 }
