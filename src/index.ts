@@ -1,5 +1,5 @@
 export {
-  h, createElement, Fragment, mountDom, mountDom as m,
+  h, createElement, Fragment, mountDom, mountDom as m, hm,
 } from '@gera2ld/jsx-dom';
 
 if (typeof VM === 'object') {

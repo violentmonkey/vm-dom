@@ -17,13 +17,17 @@ First, include `@violentmonkey/dom` as a dependency:
 // ...
 ```
 
-Then you can use `VM.h` and `VM.m` directly.
+Then you can use `VM.h` (similar to `React.createElement`) and `VM.m` (for `mount`ing as DOM elements) directly.
 
-Note: `VM.h` is similar to `React.createElement` and `VM.m` is for `mount` as a DOM element.
+There is also a `VM.hm` for `VM.h` plus `VM.m` if you don't need SVG support and want to get rid of `VM.m`.
 
 ```js
 const vdom = VM.h('div', {}, 'hello');
-const el = VM.m(vdom);
+const el = VM.m(vdom); // -> HTMLDivElement
+
+// or
+const el = VM.hm('div', {}, 'hello'); // -> HTMLDivElement
+
 document.body.appendChild(el);
 ```
 
@@ -35,7 +39,7 @@ Or use with JSX and bundlers, for example:
   plugins: [
     // JSX
     ['@babel/plugin-transform-react-jsx', {
-      pragma: 'VM.h',
+      pragma: 'VM.h', // or 'VM.hm' if you don't need SVG support and want to get rid of 'VM.m'
       pragmaFrag: 'VM.Fragment',
     }],
   ],
@@ -43,7 +47,11 @@ Or use with JSX and bundlers, for example:
 ```
 
 ```js
+// pragma: VM.h
 document.body.appendChild(VM.m(<div>hello</div>));
+
+// pragma: VM.hm
+document.body.appendChild(<div>hello</div>);
 ```
 
 To initialize a project for userscript with JSX support, try [generator-userscript](https://github.com/violentmonkey/generator-userscript):
