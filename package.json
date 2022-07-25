@@ -29,15 +29,15 @@
   ],
   "typings": "types/index.d.ts",
   "devDependencies": {
-    "@gera2ld/plaid": "~2.4.0",
-    "@gera2ld/plaid-common-ts": "~2.4.0",
-    "@gera2ld/plaid-rollup": "~2.4.0",
-    "del-cli": "^4.0.1",
-    "husky": "^7.0.4",
-    "typedoc": "^0.22.9"
+    "@gera2ld/plaid": "~2.5.5",
+    "@gera2ld/plaid-common-ts": "~2.5.1",
+    "@gera2ld/plaid-rollup": "~2.5.0",
+    "del-cli": "^5.0.0",
+    "husky": "^8.0.1",
+    "typedoc": "^0.23.9"
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
-    "@gera2ld/jsx-dom": "^2.1.0"
+    "@babel/runtime": "^7.18.9",
+    "@gera2ld/jsx-dom": "^2.2.0"
   }
 }

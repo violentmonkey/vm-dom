@@ -49,9 +49,8 @@ export function getTextValues(node: HTMLElement) {
 export function observe(
   node: Node,
   callback: (mutations: MutationRecord[], observer: MutationObserver) => boolean,
-  options?: any,
+  options?: MutationObserverInit,
 ): () => void {
-  let disconnect: () => void;
   const observer = new MutationObserver((mutations, ob) => {
     const result = callback(mutations, ob);
     if (result) disconnect();
@@ -60,6 +59,6 @@ export function observe(
     childList: true,
     subtree: true,
   }, options));
-  disconnect = () => observer.disconnect();
+  const disconnect = () => observer.disconnect();
   return disconnect;
 }
