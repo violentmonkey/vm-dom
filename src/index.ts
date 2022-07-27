@@ -11,7 +11,7 @@ if (typeof VM === 'object') {
 /**
  * Return all elements that match the given `xpath` as an array.
  */
-export function getElementsByXPath(xpath: string, context = document) {
+export function getElementsByXPath(xpath: string, context: Node = document) {
   const iterator = document.evaluate(xpath, context, null, XPathResult.ANY_TYPE, null);
   const result: Node[] = [];
   let item: Node;
@@ -48,7 +48,7 @@ export function getTextValues(node: HTMLElement) {
  */
 export function observe(
   node: Node,
-  callback: (mutations: MutationRecord[], observer: MutationObserver) => boolean,
+  callback: (mutations: MutationRecord[], observer: MutationObserver) => boolean | void,
   options?: MutationObserverInit,
 ): () => void {
   const observer = new MutationObserver((mutations, ob) => {
