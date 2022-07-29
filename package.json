@@ -38,6 +38,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.18.9",
-    "@gera2ld/jsx-dom": "^2.2.0"
+    "@gera2ld/jsx-dom": "^2.2.1"
   }
 }
