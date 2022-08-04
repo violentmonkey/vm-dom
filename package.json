@@ -36,7 +36,7 @@
     "@gera2ld/plaid-rollup": "~2.5.0",
     "del-cli": "^5.0.0",
     "husky": "^8.0.1",
-    "typedoc": "^0.23.9"
+    "typedoc": "^0.23.10"
   },
   "dependencies": {
     "@babel/runtime": "^7.18.9",
