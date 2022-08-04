@@ -3,7 +3,6 @@ const {
   getRollupExternal,
   getRollupPlugins,
   loadConfigSync,
-  rollupMinify,
 } = require('@gera2ld/plaid');
 const pkg = require('./package.json');
 
@@ -30,21 +29,30 @@ const rollupConfig = [
         extensions: defaultOptions.extensions,
         postcss: postcssOptions,
       }),
+      external,
     },
     output: {
-      format: 'iife',
+      format: 'esm',
+      file: `${DIST}/${FILENAME}.mjs`,
+    },
+  },
+  {
+    input: {
+      input: 'src/index.ts',
+      plugins: getRollupPlugins({
+        esm: true,
+        extensions: defaultOptions.extensions,
+        postcss: postcssOptions,
+      }),
+    },
+    output: {
+      format: 'umd',
       file: `${DIST}/${FILENAME}.js`,
       name: 'VM',
       ...bundleOptions,
     },
-    minify: true,
   },
 ];
-// Generate minified versions
-rollupConfig.filter(({ minify }) => minify)
-.forEach(config => {
-  rollupConfig.push(rollupMinify(config));
-});
 
 rollupConfig.forEach((item) => {
   item.output = {
@@ -52,9 +60,9 @@ rollupConfig.forEach((item) => {
     // If set to false, circular dependencies and live bindings for external imports won't work
     externalLiveBindings: false,
     ...item.output,
-    ...BANNER && {
+    ...(BANNER && {
       banner: BANNER,
-    },
+    }),
   };
 });
 

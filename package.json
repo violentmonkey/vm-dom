@@ -2,10 +2,10 @@
   "name": "@violentmonkey/dom",
   "version": "2.1.2",
   "description": "Use JSX for HTML elements.",
-  "author": "Gerald <gera2ld@163.com>",
+  "author": "Gerald <gera2ld@live.com>",
   "license": "ISC",
-  "unpkg": "dist/index.min.js",
-  "jsdelivr": "dist/index.min.js",
+  "unpkg": "dist/index.js",
+  "jsdelivr": "dist/index.js",
   "repository": "git@github.com:violentmonkey/vm-dom.git",
   "scripts": {
     "prepare": "husky install",
@@ -13,7 +13,8 @@
     "build:types": "tsc",
     "build:js": "rollup -c rollup.conf.js",
     "build": "run-s ci clean build:*",
-    "lint": "eslint --ext .ts .",
+    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
+    "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ext .ts,tsx src",
     "prepublishOnly": "run-s build",
     "ci": "run-s lint",
     "clean": "del-cli dist types"
@@ -23,6 +24,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "files": [
     "dist",
     "types"

@@ -8,15 +8,7 @@
     "outDir": "types",
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
-    "lib": [
-      "DOM",
-      "ES6",
-      "DOM.Iterable",
-      "ScriptHost",
-      "ESNext"
-    ]
+    "lib": ["DOM", "ES6", "DOM.Iterable", "ScriptHost", "ESNext"]
   },
-  "include": [
-    "src/**/*.ts"
-  ]
+  "include": ["src/**/*.ts"]
 }

@@ -1,5 +1,3 @@
 declare const VM: {
-  versions: {
-    [key: string]: string;
-  };
+  versions: Record<string, string>;
 };
