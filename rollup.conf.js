@@ -7,7 +7,6 @@ const {
 const pkg = require('./package.json');
 
 const DIST = defaultOptions.distDir;
-const FILENAME = 'index';
 const BANNER = `/*! ${pkg.name} v${pkg.version} | ${pkg.license} License */`;
 
 const external = getRollupExternal();
@@ -33,7 +32,7 @@ const rollupConfig = [
     },
     output: {
       format: 'esm',
-      file: `${DIST}/${FILENAME}.mjs`,
+      file: `${DIST}/index.mjs`,
     },
   },
   {
@@ -47,8 +46,24 @@ const rollupConfig = [
     },
     output: {
       format: 'umd',
-      file: `${DIST}/${FILENAME}.js`,
+      file: `${DIST}/index.js`,
       name: 'VM',
+      ...bundleOptions,
+    },
+  },
+  {
+    input: {
+      input: 'src/solid.ts',
+      plugins: getRollupPlugins({
+        esm: true,
+        extensions: defaultOptions.extensions,
+        postcss: postcssOptions,
+      }),
+    },
+    output: {
+      format: 'umd',
+      file: `${DIST}/solid.js`,
+      name: 'VM.solid',
       ...bundleOptions,
     },
   },
