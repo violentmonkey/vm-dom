@@ -31,15 +31,15 @@
   ],
   "typings": "types/index.d.ts",
   "devDependencies": {
-    "@gera2ld/plaid": "~2.5.5",
+    "@gera2ld/plaid": "~2.5.6",
     "@gera2ld/plaid-common-ts": "~2.5.1",
-    "@gera2ld/plaid-rollup": "~2.5.0",
+    "@gera2ld/plaid-rollup": "~2.5.6",
     "del-cli": "^5.0.0",
-    "husky": "^8.0.1",
-    "typedoc": "^0.23.10"
+    "husky": "^8.0.3",
+    "typedoc": "^0.23.28"
   },
   "dependencies": {
-    "@babel/runtime": "^7.18.9",
-    "@gera2ld/jsx-dom": "^2.2.1"
+    "@babel/runtime": "^7.21.5",
+    "@gera2ld/jsx-dom": "^2.2.2"
   }
 }
