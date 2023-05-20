@@ -45,7 +45,7 @@ const rollupConfig = [
       }),
     },
     output: {
-      format: 'umd',
+      format: 'iife',
       file: `${DIST}/index.js`,
       name: 'VM',
       ...bundleOptions,
@@ -61,7 +61,7 @@ const rollupConfig = [
       }),
     },
     output: {
-      format: 'umd',
+      format: 'iife',
       file: `${DIST}/solid.js`,
       name: 'VM.solid',
       ...bundleOptions,

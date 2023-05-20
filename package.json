@@ -11,8 +11,8 @@
     "build:types": "tsc",
     "build:js": "rollup -c rollup.conf.js",
     "build": "run-s ci clean build:*",
-    "format": "prettier --write --plugin-search-dir=. .",
-    "lint": "prettier --check --plugin-search-dir=. . && eslint --ext .ts,tsx src",
+    "format": "prettier --ignore-path .eslintignore --write --plugin-search-dir=. .",
+    "lint": "prettier --ignore-path .eslintignore --check --plugin-search-dir=. . && eslint --ext .ts,tsx src",
     "prepublishOnly": "run-s build",
     "ci": "run-s lint",
     "clean": "del-cli dist types"
@@ -43,7 +43,7 @@
     "@gera2ld/plaid-rollup": "~2.5.6",
     "del-cli": "^5.0.0",
     "husky": "^8.0.3",
-    "typedoc": "^0.23.28"
+    "typedoc": "^0.24.7"
   },
   "dependencies": {
     "@babel/runtime": "^7.21.5",
