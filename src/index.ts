@@ -11,7 +11,7 @@ export const versions = Object.assign(
   (typeof VM !== 'undefined' && VM?.versions) || {},
   {
     dom: 'process.env.VERSION',
-  }
+  },
 );
 
 /**
@@ -23,7 +23,7 @@ export function getElementsByXPath(xpath: string, context: Node = document) {
     context,
     null,
     XPathResult.ANY_TYPE,
-    null
+    null,
   );
   const result: Node[] = [];
   let item: Node;
@@ -65,9 +65,9 @@ export function observe(
   node: Node,
   callback: (
     mutations: MutationRecord[],
-    observer: MutationObserver
+    observer: MutationObserver,
   ) => boolean | void,
-  options?: MutationObserverInit
+  options?: MutationObserverInit,
 ): () => void {
   const observer = new MutationObserver((mutations, ob) => {
     const result = callback(mutations, ob);
@@ -80,8 +80,8 @@ export function observe(
         childList: true,
         subtree: true,
       },
-      options
-    )
+      options,
+    ),
   );
   const disconnect = () => observer.disconnect();
   return disconnect;

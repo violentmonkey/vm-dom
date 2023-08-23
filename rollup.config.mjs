@@ -1,10 +1,7 @@
-const {
-  defaultOptions,
-  getRollupExternal,
-  getRollupPlugins,
-  loadConfigSync,
-} = require('@gera2ld/plaid');
-const pkg = require('./package.json');
+import plaid from '@gera2ld/plaid';
+import pkg from './package.json' assert { type: 'json' };
+
+const { defaultOptions, getRollupExternal, getRollupPlugins } = plaid;
 
 const DIST = defaultOptions.distDir;
 const BANNER = `/*! ${pkg.name} v${pkg.version} | ${pkg.license} License */`;
@@ -15,35 +12,30 @@ const bundleOptions = {
   esModule: false,
 };
 const postcssOptions = {
-  ...require('@gera2ld/plaid/config/postcssrc'),
   inject: false,
   minimize: true,
 };
 const rollupConfig = [
   {
-    input: {
-      input: 'src/index.ts',
-      plugins: getRollupPlugins({
-        esm: true,
-        extensions: defaultOptions.extensions,
-        postcss: postcssOptions,
-      }),
-      external,
-    },
+    input: 'src/index.ts',
+    plugins: getRollupPlugins({
+      esm: true,
+      extensions: defaultOptions.extensions,
+      postcss: postcssOptions,
+    }),
+    external,
     output: {
       format: 'esm',
       file: `${DIST}/index.mjs`,
     },
   },
   {
-    input: {
-      input: 'src/index.ts',
-      plugins: getRollupPlugins({
-        esm: true,
-        extensions: defaultOptions.extensions,
-        postcss: postcssOptions,
-      }),
-    },
+    input: 'src/index.ts',
+    plugins: getRollupPlugins({
+      esm: true,
+      extensions: defaultOptions.extensions,
+      postcss: postcssOptions,
+    }),
     output: {
       format: 'iife',
       file: `${DIST}/index.js`,
@@ -52,14 +44,12 @@ const rollupConfig = [
     },
   },
   {
-    input: {
-      input: 'src/solid.ts',
-      plugins: getRollupPlugins({
-        esm: true,
-        extensions: defaultOptions.extensions,
-        postcss: postcssOptions,
-      }),
-    },
+    input: 'src/solid.ts',
+    plugins: getRollupPlugins({
+      esm: true,
+      extensions: defaultOptions.extensions,
+      postcss: postcssOptions,
+    }),
     output: {
       format: 'iife',
       file: `${DIST}/solid.js`,
@@ -81,7 +71,4 @@ rollupConfig.forEach((item) => {
   };
 });
 
-module.exports = rollupConfig.map(({ input, output }) => ({
-  ...input,
-  output,
-}));
+export default rollupConfig;

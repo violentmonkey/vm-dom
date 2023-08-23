@@ -7,12 +7,12 @@
   "repository": "git@github.com:violentmonkey/vm-dom.git",
   "scripts": {
     "prepare": "husky install",
-    "dev": "rollup -wc rollup.conf.js",
+    "dev": "rollup -wc",
     "build:types": "tsc",
-    "build:js": "rollup -c rollup.conf.js",
+    "build:js": "rollup -c",
     "build": "run-s ci clean build:*",
-    "format": "prettier --ignore-path .eslintignore --write --plugin-search-dir=. .",
-    "lint": "prettier --ignore-path .eslintignore --check --plugin-search-dir=. . && eslint --ext .ts,tsx src",
+    "format": "prettier --ignore-path .eslintignore --write .",
+    "lint": "prettier --ignore-path .eslintignore --check . && eslint --ext .ts,tsx src",
     "prepublishOnly": "run-s build",
     "ci": "run-s lint",
     "clean": "del-cli dist types"
@@ -38,16 +38,14 @@
   ],
   "typings": "types/index.d.ts",
   "devDependencies": {
-    "@gera2ld/plaid": "~2.5.6",
-    "@gera2ld/plaid-common-ts": "~2.5.1",
-    "@gera2ld/plaid-rollup": "~2.5.6",
+    "@gera2ld/plaid": "~2.6.0",
+    "@gera2ld/plaid-rollup": "~2.6.0",
     "del-cli": "^5.0.0",
-    "husky": "^8.0.3",
-    "typedoc": "^0.24.7"
+    "husky": "^8.0.3"
   },
   "dependencies": {
-    "@babel/runtime": "^7.21.5",
+    "@babel/runtime": "^7.22.10",
     "@gera2ld/jsx-dom": "^2.2.2",
-    "solid-js": "^1.7.5"
+    "solid-js": "^1.7.11"
   }
 }

@@ -2,6 +2,7 @@
 
 [![NPM](https://img.shields.io/npm/v/@violentmonkey/dom.svg)](https://npm.im/@violentmonkey/dom)
 ![License](https://img.shields.io/npm/l/@violentmonkey/dom.svg)
+[![jsDocs.io](https://img.shields.io/badge/jsDocs.io-reference-blue)](https://www.jsdocs.io/package/@violentmonkey/dom)
 
 Use JSX for HTML elements.
 
@@ -64,4 +65,4 @@ $ npx -p https://github.com/violentmonkey/generator-userscript.git -p yo yo @vio
 
 ## API
 
-See [the documentation](https://violentmonkey.github.io/vm-dom/modules.html).
+See [![jsDocs.io](https://img.shields.io/badge/jsDocs.io-reference-blue)](https://www.jsdocs.io/package/@violentmonkey/dom).
