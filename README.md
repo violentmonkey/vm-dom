@@ -8,6 +8,18 @@ Use JSX for HTML elements.
 
 Based on [@gera2ld/jsx-dom](https://github.com/gera2ld/jsx-dom).
 
+## What is it?
+
+This library is just a light wrapper around `document.createElement`. So we can easily create DOM elements using JSX with the help of this library instead of writing tedious imperative code.
+
+## When should we NOT use it?
+
+You should NOT use it when you use a library that has its own implementation of JSX, such as React, Vue, Svelte, SolidJS, etc. The JSX syntaxes are incompatible and using them together will cause unexpected issues.
+
+You don't need it if you initialize a userscript project with [generator-userscript](https://github.com/violentmonkey/generator-userscript), which uses [solid-js](https://solidjs.com/).
+
+However, you can still use methods like `VM.h` directly **without using JSX** to make the code shorter.
+
 ## Usage
 
 First, include `@violentmonkey/dom` as a dependency:
@@ -53,14 +65,6 @@ document.body.appendChild(VM.m(<div>hello</div>));
 
 // pragma: VM.hm
 document.body.appendChild(<div>hello</div>);
-```
-
-To initialize a project for userscript with JSX support, try [generator-userscript](https://github.com/violentmonkey/generator-userscript):
-
-```sh
-$ mkdir my-script
-$ cd my-script
-$ npx -p https://github.com/violentmonkey/generator-userscript.git -p yo yo @violentmonkey/userscript
 ```
 
 ## API
