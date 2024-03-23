@@ -1,74 +1,50 @@
-import plaid from '@gera2ld/plaid';
+import { defineExternal, definePlugins } from '@gera2ld/plaid-rollup';
+import { defineConfig } from 'rollup';
+import solidPkg from 'solid-js/package.json' assert { type: 'json' };
 import pkg from './package.json' assert { type: 'json' };
 
-const { defaultOptions, getRollupExternal, getRollupPlugins } = plaid;
-
-const DIST = defaultOptions.distDir;
-const BANNER = `/*! ${pkg.name} v${pkg.version} | ${pkg.license} License */`;
-
-const external = getRollupExternal();
+const external = defineExternal(Object.keys(pkg.dependencies));
 const bundleOptions = {
   extend: true,
   esModule: false,
 };
-const postcssOptions = {
-  inject: false,
-  minimize: true,
+const outputOptions = {
+  indent: false,
+  banner: `/*! ${pkg.name}@${pkg.version} | ${pkg.license} License */`,
 };
-const rollupConfig = [
+
+export default defineConfig([
   {
     input: 'src/index.ts',
-    plugins: getRollupPlugins({
-      esm: true,
-      extensions: defaultOptions.extensions,
-      postcss: postcssOptions,
-    }),
+    plugins: definePlugins({}),
     external,
     output: {
       format: 'esm',
-      file: `${DIST}/index.mjs`,
+      file: `dist/index.mjs`,
+      ...outputOptions,
     },
   },
   {
     input: 'src/index.ts',
-    plugins: getRollupPlugins({
-      esm: true,
-      extensions: defaultOptions.extensions,
-      postcss: postcssOptions,
-    }),
+    plugins: definePlugins({}),
     output: {
       format: 'iife',
-      file: `${DIST}/index.js`,
+      file: `dist/index.js`,
       name: 'VM',
+      ...outputOptions,
       ...bundleOptions,
     },
   },
   {
     input: 'src/solid.ts',
-    plugins: getRollupPlugins({
-      esm: true,
-      extensions: defaultOptions.extensions,
-      postcss: postcssOptions,
-    }),
+    plugins: definePlugins({}),
     output: {
       format: 'iife',
-      file: `${DIST}/solid.js`,
+      file: `dist/solid.js`,
       name: 'VM.solid',
+      ...outputOptions,
       ...bundleOptions,
+      banner: `/*! ${pkg.name}@${pkg.version}/solid-js  solid-js@${solidPkg.version} | ${solidPkg.license} License */`,
     },
   },
-];
-
-rollupConfig.forEach((item) => {
-  item.output = {
-    indent: false,
-    // If set to false, circular dependencies and live bindings for external imports won't work
-    externalLiveBindings: false,
-    ...item.output,
-    ...(BANNER && {
-      banner: BANNER,
-    }),
-  };
-});
-
-export default rollupConfig;
+]);
