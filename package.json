@@ -1,6 +1,6 @@
 {
   "name": "@violentmonkey/dom",
-  "version": "2.1.7",
+  "version": "2.2.0",
   "description": "Use JSX for HTML elements.",
   "author": "Gerald <gera2ld@live.com>",
   "license": "ISC",
