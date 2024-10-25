@@ -6,7 +6,7 @@
   "license": "ISC",
   "repository": "git@github.com:violentmonkey/vm-dom.git",
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky || true",
     "dev": "rollup -wc",
     "build:types": "tsc",
     "build:js": "rollup -c",
