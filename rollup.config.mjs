@@ -1,7 +1,7 @@
 import { defineExternal, definePlugins } from '@gera2ld/plaid-rollup';
 import { defineConfig } from 'rollup';
-import solidPkg from 'solid-js/package.json' assert { type: 'json' };
-import pkg from './package.json' assert { type: 'json' };
+import solidPkg from 'solid-js/package.json' with { type: 'json' };
+import pkg from './package.json' with { type: 'json' };
 
 const external = defineExternal(Object.keys(pkg.dependencies));
 const bundleOptions = {

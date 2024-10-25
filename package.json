@@ -40,12 +40,15 @@
   "devDependencies": {
     "@gera2ld/plaid": "~2.7.0",
     "@gera2ld/plaid-rollup": "~2.7.0",
-    "del-cli": "^5.1.0",
-    "husky": "^9.0.11"
+    "del-cli": "^6.0.0",
+    "husky": "^9.1.6"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.1",
+    "@babel/runtime": "^7.25.9",
     "@gera2ld/jsx-dom": "^2.2.2",
-    "solid-js": "^1.8.16"
+    "solid-js": "^1.9.3"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
