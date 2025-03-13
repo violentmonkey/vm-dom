@@ -28,7 +28,8 @@
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "default": "./dist/index.js"
+      "default": "./dist/index.js",
+      "types": "./types/index.d.ts"
     },
     "./solid-js": "./dist/solid.js"
   },
