@@ -47,7 +47,7 @@
   "dependencies": {
     "@babel/runtime": "^7.25.9",
     "@gera2ld/jsx-dom": "^2.2.2",
-    "solid-js": "^1.9.3"
+    "solid-js": "^1.9.5"
   },
   "engines": {
     "node": ">=20"
